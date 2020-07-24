@@ -4,7 +4,7 @@ import api from "../utils/api";
 
 class Directory extends Component {
   state = {
-    currentFilter: "none",
+    employees,
   };
 
   componentDidMount() {
@@ -12,9 +12,9 @@ class Directory extends Component {
     return (employees = api());
   }
 
-  handleFilterChange = (filter) => {
-    this.setState({ currentFilter: filter });
-  };
+  //   handleFilterChange = (filter) => {
+  //     this.setState({ currentFilter: filter });
+  //   };
 
   render() {
     return (
@@ -35,6 +35,17 @@ class Directory extends Component {
               View by Department
             </button>
           </div>
+        </div>
+        <div className="row" id="employeeRow">
+          {this.state.employees.map((employee) => {
+            <EmployeeCard
+              name={employee.name}
+              image={employee.image}
+              phone={employee.phone}
+              email={employee.email}
+              DateofBirth={employee.dateofbirth}
+            />;
+          })}
         </div>
       </div>
     );
