@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import EmployeeCard from "./EmployeeCard";
 import api from "../utils/api";
+import moment from "moment";
 
 class Directory extends Component {
   state = {
@@ -25,11 +26,22 @@ class Directory extends Component {
   //     // this.setState({ employees: newArray });
   //   };
 
+  //function to sort employees array by last name
   sortAZ = function (a, b) {
     if (a.data.results.lastName < b.data.results.lastName) {
       return -1;
     }
     if (a.data.results.lastName > b.data.results.lastName) {
+      return 1;
+    }
+    return 0;
+  };
+
+  filterBdayMonth = function (a, b, i) {
+    if (a.data[i].results.dob.date.moment().format("D DD YYYY")) {
+      return -1;
+    }
+    if (a.data[i].results.dob.date.moment().format("D DD YYYY")) {
       return 1;
     }
     return 0;
@@ -73,7 +85,7 @@ class Directory extends Component {
               image={employee.picture.thumbnail}
               phone={employee.phone}
               email={employee.email}
-              age={employee.dob.age}
+              DOB={employee.dob.date.moment().format("D DD YYYY")}
             />
           ))}
         </div>
