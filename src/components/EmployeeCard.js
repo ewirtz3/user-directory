@@ -6,7 +6,7 @@ export default function EmployeeCard({
   image,
   phone,
   email,
-  age,
+  DOB,
 }) {
   return (
     <div className="card">
@@ -27,7 +27,7 @@ export default function EmployeeCard({
             <p>Email: {email}</p>
           </li>
           <li>
-            <p>Age: {age}</p>
+            <p>DOB: {DOB}</p>
           </li>
         </ul>
       </div>

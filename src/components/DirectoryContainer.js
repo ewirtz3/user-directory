@@ -37,11 +37,18 @@ class Directory extends Component {
     return 0;
   };
 
+  //function to compare birth month of employee with selected birth month
   filterBdayMonth = function (a, b, i) {
-    if (a.data[i].results.dob.date.moment().format("D DD YYYY")) {
+    if (
+      a.data[i].results.dob.date.moment().format("MM") <
+      a.data[i].results.dob.date.moment().format("MM")
+    ) {
       return -1;
     }
-    if (a.data[i].results.dob.date.moment().format("D DD YYYY")) {
+    if (
+      a.data[i].results.dob.date.moment().format("MM") >
+      a.data[i].results.dob.date.moment().format("MM")
+    ) {
       return 1;
     }
     return 0;
