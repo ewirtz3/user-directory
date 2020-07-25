@@ -4,17 +4,36 @@ import api from "../utils/api";
 
 class Directory extends Component {
   state = {
-    employees,
+    employees: [],
   };
 
   componentDidMount() {
-    let employees;
-    return (employees = api());
+    api.getUsers().then(({ data }) => {
+      console.log(`data.results:>>`, data.results);
+      this.setState({ employees: data.results });
+    });
   }
 
   //   handleFilterChange = (filter) => {
   //     this.setState({ currentFilter: filter });
   //   };
+  //   sortAZ = () => {
+  //     const newArray = this.state.employees.sort((a, b) => {
+  //       return a.name.lastName - b.name.lastName;
+  //     });
+  //     console.log(newArray);
+  //     // this.setState({ employees: newArray });
+  //   };
+
+  sortAZ = function (a, b) {
+    if (a.data.results.lastName < b.data.results.lastName) {
+      return -1;
+    }
+    if (a.data.results.lastName > b.data.results.lastName) {
+      return 1;
+    }
+    return 0;
+  };
 
   render() {
     return (
@@ -35,17 +54,28 @@ class Directory extends Component {
               View by Department
             </button>
           </div>
+          <button
+            className="dropdown-item"
+            type="button"
+            onClick={() => {
+              this.sortAZ();
+            }}
+          >
+            Sort A-Z
+          </button>
         </div>
         <div className="row" id="employeeRow">
-          {this.state.employees.map((employee) => {
+          {this.state.employees.map((employee, i) => (
             <EmployeeCard
-              name={employee.name}
-              image={employee.image}
+              key={i}
+              firstName={employee.name.first}
+              lastName={employee.name.last}
+              image={employee.picture.thumbnail}
               phone={employee.phone}
               email={employee.email}
-              DateofBirth={employee.dateofbirth}
-            />;
-          })}
+              age={employee.dob.age}
+            />
+          ))}
         </div>
       </div>
     );

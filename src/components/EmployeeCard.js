@@ -1,21 +1,24 @@
 import React from "react";
 
 export default function EmployeeCard({
-  name,
+  firstName,
+  lastName,
   image,
   phone,
   email,
-  dateofbirth,
+  age,
 }) {
   return (
     <div className="card">
       <div className="img-container">
-        <img alt={name} src={image} />
+        <img alt={firstName} src={image} />
       </div>
       <div className="content">
         <ul>
           <li>
-            <p>Name: {name}</p>
+            <p>
+              Name: {firstName} {lastName}
+            </p>
           </li>
           <li>
             <p>Phone: {phone}</p>
@@ -24,7 +27,7 @@ export default function EmployeeCard({
             <p>Email: {email}</p>
           </li>
           <li>
-            <p>DOB: {dateofbirth}</p>
+            <p>Age: {age}</p>
           </li>
         </ul>
       </div>
