@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import EmployeeCard from "./EmployeeCard";
 import api from "../utils/api";
 import moment from "moment";
+const Moment = moment();
 
 class Directory extends Component {
   state = {
     employees: [],
+    filter: "none",
   };
 
   componentDidMount() {
@@ -15,9 +17,9 @@ class Directory extends Component {
     });
   }
 
-  //   handleFilterChange = (filter) => {
-  //     this.setState({ currentFilter: filter });
-  //   };
+  // handleFilterChange = (filter) => {
+  //   this.setState({ currentFilter: filter });
+  // };
   //   sortAZ = () => {
   //     const newArray = this.state.employees.sort((a, b) => {
   //       return a.name.lastName - b.name.lastName;
@@ -41,13 +43,13 @@ class Directory extends Component {
   filterBdayMonth = function (a, b, i) {
     if (
       a.data[i].results.dob.date.moment().format("MM") <
-      a.data[i].results.dob.date.moment().format("MM")
+      b.data[i].results.dob.date.moment().format("MM")
     ) {
       return -1;
     }
     if (
       a.data[i].results.dob.date.moment().format("MM") >
-      a.data[i].results.dob.date.moment().format("MM")
+      b.data[i].results.dob.date.moment().format("MM")
     ) {
       return 1;
     }
@@ -59,25 +61,10 @@ class Directory extends Component {
       <div className="container">
         <div className="row" id="filterRow">
           <button
-            className="btn btn-warning dropdown-toggle"
+            className="btn btn-primary"
             type="button"
-            id="filterButton"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Filter Results
-          </button>
-          <div className="dropdown-menu" aria-labelledby="filterButton">
-            <button className="dropdown-item" type="button">
-              View by Department
-            </button>
-          </div>
-          <button
-            className="dropdown-item"
-            type="button"
-            onClick={() => {
-              this.sortAZ();
+            onClick={(i) => {
+              this.sortAZ(this.state.employees[i], this.state.employees[i + 1]);
             }}
           >
             Sort A-Z
@@ -92,7 +79,7 @@ class Directory extends Component {
               image={employee.picture.thumbnail}
               phone={employee.phone}
               email={employee.email}
-              DOB={employee.dob.date.moment().format("D DD YYYY")}
+              DOB={employee.dob.date.Moment.format("D DD YYYY")}
             />
           ))}
         </div>
