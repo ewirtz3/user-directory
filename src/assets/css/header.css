@@ -1,4 +1,8 @@
 .jumbotron {
+  background-image: url("../../assets/header_background.jpeg");
+  background-size: 100%;
   background-color: #17bfae;
+  color: white;
+
   font-family: "Rowdies", cursive;
 }

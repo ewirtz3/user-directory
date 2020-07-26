@@ -1,6 +1,6 @@
 .btn {
   font-family: "Rowdies", cursive;
-  margin: 50px;
+  margin: 30px;
 }
 
 #filterRow {
@@ -8,7 +8,7 @@
   justify-content: center;
 }
 
-.container {
+#employeeRow {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
 }

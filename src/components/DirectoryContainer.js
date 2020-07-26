@@ -63,13 +63,13 @@ class Directory extends Component {
       <div className="container">
         <div className="row" id="filterRow">
           <button
-            className="btn btn-secondary"
+            className="btn btn-info"
             type="button"
             onClick={this.sortOnClick}
           >
             Sort A-Z
           </button>
-          <button className="btn btn-secondary" type="button">
+          <button className="btn btn-info" type="button">
             Filter by Birthday Month
           </button>
         </div>
