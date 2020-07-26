@@ -1,0 +1,17 @@
+.card {
+  width: 8rem;
+  margin: 3px;
+  font-family: "Merriweather", serif;
+}
+
+.card-text {
+  font-size: 12px;
+}
+
+.card-title {
+  font-size: 14px;
+}
+
+.identifier {
+  color: #17bfae;
+}
