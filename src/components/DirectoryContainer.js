@@ -62,14 +62,10 @@ class Directory extends Component {
     return (
       <div className="container">
         <div className="row" id="filterRow">
-          <button
-            className="btn btn-info"
-            type="button"
-            onClick={this.sortOnClick}
-          >
+          <button className="btn" type="button" onClick={this.sortOnClick}>
             Sort A-Z
           </button>
-          <button className="btn btn-info" type="button">
+          <button className="btn" type="button">
             Filter by Birthday Month
           </button>
         </div>
