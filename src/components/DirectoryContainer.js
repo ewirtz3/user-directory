@@ -35,6 +35,13 @@ class Directory extends Component {
     console.log(`birthMonth:>>`, birthMonth);
   };
 
+  //function to handle form submit
+  handleFilter = (e) => {
+    e.preventDefault();
+    console.log(`e:>>`, e);
+    // this.filterBdayMonth(e.target.value);
+  };
+
   render() {
     return (
       <div className="container">
@@ -42,7 +49,7 @@ class Directory extends Component {
           <div className="col-sm-12">
             <div className="row" id="sortRow">
               <button
-                className="btn"
+                className="btn btn-outline-primary"
                 type="button"
                 id="sortBtn"
                 onClick={this.sortOnClick}
@@ -51,23 +58,25 @@ class Directory extends Component {
               </button>
             </div>
             <div className="row" id="filterRow">
-              <div className="input-group">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Enter a month to filter by birth month"
-                  aria-label="Birth Month"
-                  aria-describedby="filterMonthBtn"
-                />
+              <form className="form-inline" onSubmit={this.handleFilter}>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Filter by birth month"
+                    aria-label="Birth Month"
+                    aria-describedby="filterMonthBtn"
+                  />
 
-                <button
-                  className="btn btn-outline-primary input-group-append"
-                  type="button"
-                  id="filterMonthBtn"
-                >
-                  Filter
-                </button>
-              </div>
+                  <button
+                    className="btn btn-outline-primary"
+                    type="submit"
+                    id="filterMonthBtn"
+                  >
+                    Filter
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>

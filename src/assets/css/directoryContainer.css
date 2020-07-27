@@ -1,6 +1,6 @@
 #sortBtn {
   font-family: "Rowdies", cursive;
-  margin: 30px;
+  margin: 10px;
 }
 
 #filterRow {
@@ -18,7 +18,10 @@
   justify-content: center;
 }
 
-.input-group {
-  width: 50%;
+.form-inline {
   margin-bottom: 20px;
+}
+
+#filterMonthBtn {
+  margin-left: 10px;
 }
