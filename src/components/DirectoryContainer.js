@@ -30,11 +30,8 @@ class Directory extends Component {
   //     // this.setState({ employees: newArray });
   //   };
 
-  //function to sort employees array by last name
-  //   sortAZ = () => {
-  //     let a = this.state.employees[i];
-  //     let b = this.state.employees[i + 1];
-
+  //   function to sort employees array by last name
+  //   sortAZ = (a, b) => {
   //     if (a[this.state.employees.name].last < b[this.state.employees.name].last) {
   //       return -1;
   //     }
@@ -46,7 +43,11 @@ class Directory extends Component {
 
   //onClick function to call sortAZ() and set state
   sortOnClick = () => {
-    const sorted = this.sortAZ(this.state.employees);
+    console.log(`sort button click:>>`);
+    const sorted = this.state.employees.sort((a, b) =>
+      a.name.last > b.name.last ? 1 : b.name.last > a.name.last ? -1 : 0
+    );
+    console.log(`sorted:>>`, sorted);
     this.setState({ employees: sorted });
   };
 
