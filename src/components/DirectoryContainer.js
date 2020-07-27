@@ -11,43 +11,19 @@ class Directory extends Component {
     // birthMonth: "none"
   };
 
+  //api call is made as soon as component is mounted to the DOM
   componentDidMount() {
     api.getUsers().then(({ data }) => {
       console.log(`data.results:>>`, data.results);
       this.setState({ employees: data.results });
-      console.log(`this.state.employees:>>`, this.state.employees);
     });
   }
 
-  // handleFilterChange = (filter) => {
-  //   this.setState({ currentFilter: filter });
-  // };
-  //   sortAZ = () => {
-  //     const newArray = this.state.employees.sort((a, b) => {
-  //       return a.name.lastName - b.name.lastName;
-  //     });
-  //     console.log(newArray);
-  //     // this.setState({ employees: newArray });
-  //   };
-
-  //   function to sort employees array by last name
-  //   sortAZ = (a, b) => {
-  //     if (a[this.state.employees.name].last < b[this.state.employees.name].last) {
-  //       return -1;
-  //     }
-  //     if (a[this.state.employees.name].last > b[this.state.employees.name].last) {
-  //       return 1;
-  //     }
-  //     return 0;
-  //   };
-
-  //onClick function to call sortAZ() and set state
+  //onClick function to sort employees array by last name and set state
   sortOnClick = () => {
-    console.log(`sort button click:>>`);
     const sorted = this.state.employees.sort((a, b) =>
       a.name.last > b.name.last ? 1 : b.name.last > a.name.last ? -1 : 0
     );
-    console.log(`sorted:>>`, sorted);
     this.setState({ employees: sorted });
   };
 
@@ -62,13 +38,38 @@ class Directory extends Component {
   render() {
     return (
       <div className="container">
-        <div className="row" id="filterRow">
-          <button className="btn" type="button" onClick={this.sortOnClick}>
-            Sort A-Z
-          </button>
-          <button className="btn" type="button">
-            Filter by Birthday Month
-          </button>
+        <div className="row">
+          <div className="col-sm-12">
+            <div className="row" id="sortRow">
+              <button
+                className="btn"
+                type="button"
+                id="sortBtn"
+                onClick={this.sortOnClick}
+              >
+                Sort A-Z
+              </button>
+            </div>
+            <div className="row" id="filterRow">
+              <div className="input-group">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter a month to filter by birth month"
+                  aria-label="Birth Month"
+                  aria-describedby="filterMonthBtn"
+                />
+
+                <button
+                  className="btn btn-outline-primary input-group-append"
+                  type="button"
+                  id="filterMonthBtn"
+                >
+                  Filter
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="row" id="employeeRow">
           {this.state.employees.map((employee, i) => (
