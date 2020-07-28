@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import EmployeeCard from "./EmployeeCard";
+import Filter from "./Filter";
 import api from "../utils/api";
 import moment from "moment";
 import "../assets/css/directoryContainer.css";
 
-class Directory extends Component {
+export default class Directory extends Component {
   state = {
     employees: [],
-    filter: "none",
-    // birthMonth: "none"
+    currentFilter: "users",
+    birthMonth: "",
   };
 
   //api call is made as soon as component is mounted to the DOM
@@ -27,18 +28,36 @@ class Directory extends Component {
     this.setState({ employees: sorted });
   };
 
+  //function to handle filter change
+  handleInputChange = (event) => {
+    console.log(`Filter handleInputChg event:>>`, event);
+    this.setState({ birthMonth: event.target.value });
+  };
+
+  //function to handle form submit
+  handleFormSubmit = (event) => {
+    event.preventDefault();
+    console.log(`handleFormSubmit event:>>`, event);
+  };
+
   //function to compare birth month of employee with selected birth month
   filterBdayMonth = (month) => (employee) => {
+    console.log(`filterBdayMonth hit:>>`);
     const birthMonth = moment(employee.dob.date, "YYYY MM DD").format(
       "M D YYYY"
     );
     console.log(`birthMonth:>>`, birthMonth);
   };
 
+  //function to get the value and name of the input and update state
+  handleFilterInput = (event) => {
+    console.log(`handleFilterInput event:>>`, event);
+  };
+
   //function to handle form submit
-  handleFilter = (e) => {
-    e.preventDefault();
-    console.log(`e:>>`, e);
+  handleFilter = (event) => {
+    event.preventDefault();
+    console.log(`handleFilter event:>>`, event);
     // this.filterBdayMonth(e.target.value);
   };
 
@@ -58,25 +77,11 @@ class Directory extends Component {
               </button>
             </div>
             <div className="row" id="filterRow">
-              <form className="form-inline" onSubmit={this.handleFilter}>
-                <div className="form-group">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Filter by birth month"
-                    aria-label="Birth Month"
-                    aria-describedby="filterMonthBtn"
-                  />
-
-                  <button
-                    className="btn btn-outline-primary"
-                    type="submit"
-                    id="filterMonthBtn"
-                  >
-                    Filter
-                  </button>
-                </div>
-              </form>
+              <Filter
+                handleFormSubmit={this.handleFormSubmit}
+                handleInputChange={this.handleInputChange}
+                employees={this.state.employees}
+              />
             </div>
           </div>
         </div>
@@ -99,5 +104,3 @@ class Directory extends Component {
     );
   }
 }
-
-export default Directory;

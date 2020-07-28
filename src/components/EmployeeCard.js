@@ -1,12 +1,6 @@
 import React from "react";
 import "../assets/css/employeeCard.css";
 
-// styles = {
-//   card: {
-//     width: "4rem",
-//   },
-// };
-
 export default function EmployeeCard({
   firstName,
   lastName,
