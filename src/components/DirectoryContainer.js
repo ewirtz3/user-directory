@@ -52,9 +52,7 @@ export default class Directory extends Component {
   renderFiltered = (event) => {
     event.preventDefault();
     console.log(`event.target.value:>>`, event.target.value);
-    const matches = this.state.employees.filter(
-      this.filterBdayMonth(event.target.value)
-    );
+    const matches = this.state.employees.filter(this.filterBdayMonth("May"));
     this.setState({ employees: matches });
   };
 
