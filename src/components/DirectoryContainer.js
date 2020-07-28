@@ -43,23 +43,32 @@ export default class Directory extends Component {
   //function to compare birth month of employee with selected birth month
   filterBdayMonth = (month) => (employee) => {
     console.log(`filterBdayMonth hit:>>`);
-    const birthMonth = moment(employee.dob.date, "YYYY MM DD").format(
-      "M D YYYY"
-    );
+    const birthMonth = moment(employee.dob.date, "YYYY MM DD").format("MMMM");
     console.log(`birthMonth:>>`, birthMonth);
+    return birthMonth.toLowerCase() === month.toLowerCase();
+  };
+
+  //function to run filterBdayMonth on employees array based on user input
+  renderFiltered = (event) => {
+    event.preventDefault();
+    console.log(`event.target.value:>>`, event.target.value);
+    const matches = this.state.employees.filter(
+      this.filterBdayMonth(event.target.value)
+    );
+    this.setState({ employees: matches });
   };
 
   //function to get the value and name of the input and update state
-  handleFilterInput = (event) => {
-    console.log(`handleFilterInput event:>>`, event);
-  };
+  //   handleFilterInput = (event) => {
+  //     console.log(`handleFilterInput event:>>`, event);
+  //   };
 
   //function to handle form submit
-  handleFilter = (event) => {
-    event.preventDefault();
-    console.log(`handleFilter event:>>`, event);
-    // this.filterBdayMonth(e.target.value);
-  };
+  //   handleFilter = (event) => {
+  //     event.preventDefault();
+  //     console.log(`handleFilter event:>>`, event);
+  //     // this.filterBdayMonth(e.target.value);
+  //   };
 
   render() {
     return (
@@ -78,8 +87,8 @@ export default class Directory extends Component {
             </div>
             <div className="row" id="filterRow">
               <Filter
-                handleFormSubmit={this.handleFormSubmit}
-                handleInputChange={this.handleInputChange}
+                handleFormSubmit={this.renderFiltered}
+                // handleInputChange={this.handleInputChange}
                 employees={this.state.employees}
               />
             </div>

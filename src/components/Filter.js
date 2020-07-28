@@ -11,7 +11,7 @@ export default function Filter(props) {
           className="form-control"
           placeholder="e.g. January, February"
           aria-label="Birth Month"
-          onChange={props.handleInputChange}
+          //   onChange={props.handleInputChange}
           aria-describedby="filterMonthBtn"
           value={props.birthMonth}
           name="birthMonth"
