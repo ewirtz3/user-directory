@@ -17,3 +17,15 @@
   display: flex;
   justify-content: center;
 }
+
+.form-inline {
+  margin-bottom: 20px;
+}
+
+#filterMonthBtn {
+  margin-left: 10px;
+}
+
+input {
+  margin-left: 10px;
+}

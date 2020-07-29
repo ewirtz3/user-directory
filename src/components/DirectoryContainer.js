@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import EmployeeCard from "./EmployeeCard";
-import Filter from "./Filter";
 import api from "../utils/api";
 import moment from "moment";
 import "../assets/css/directoryContainer.css";
 
 export default class Directory extends Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = { employees: [], currentFilter: "users", birthMonth: "" };
+  //   this.renderFiltered = this.renderFiltered.bind(this);
+  // }
+
   state = {
     employees: [],
     currentFilter: "users",
@@ -34,15 +39,9 @@ export default class Directory extends Component {
     this.setState({ birthMonth: event.target.value });
   };
 
-  //function to handle form submit
-  handleFormSubmit = (event) => {
-    event.preventDefault();
-    console.log(`handleFormSubmit event:>>`, event);
-  };
-
   //function to compare birth month of employee with selected birth month
   filterBdayMonth = (month) => (employee) => {
-    console.log(`filterBdayMonth hit:>>`);
+    console.log(`month:>>`, month);
     const birthMonth = moment(employee.dob.date, "YYYY MM DD").format("MMMM");
     console.log(`birthMonth:>>`, birthMonth);
     return birthMonth.toLowerCase() === month.toLowerCase();
@@ -50,9 +49,12 @@ export default class Directory extends Component {
 
   //function to run filterBdayMonth on employees array based on user input
   renderFiltered = (event) => {
+    event.persist();
     event.preventDefault();
-    console.log(`event.target.value:>>`, event.target.value);
-    const matches = this.state.employees.filter(this.filterBdayMonth("May"));
+    console.log(`event:>>`, event.target.siblings);
+    const matches = this.state.employees.filter(
+      this.filterBdayMonth(event.target.value)
+    );
     this.setState({ employees: matches });
   };
 
@@ -84,11 +86,29 @@ export default class Directory extends Component {
               </button>
             </div>
             <div className="row" id="filterRow">
-              <Filter
-                handleFormSubmit={this.renderFiltered}
-                // handleInputChange={this.handleInputChange}
-                employees={this.state.employees}
-              />
+              <form className="form form-inline" onSubmit={this.renderFiltered}>
+                <div className="form-group">
+                  <label htmlFor="birthMonth">Filter by birth month</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="e.g. January, February"
+                    aria-label="Birth Month"
+                    //   onChange={props.handleInputChange}
+                    aria-describedby="filterMonthBtn"
+                    name="birthMonth"
+                    id="birthMonth"
+                  />
+                  <button
+                    className="btn btn-outline-primary"
+                    type="submit"
+                    id="filterMonthBtn"
+                    // onClick={this.renderFiltered}
+                  >
+                    Filter
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
@@ -107,6 +127,14 @@ export default class Directory extends Component {
             />
           ))}
         </div>
+        <button
+          className="btn btn-outline-primary"
+          type="submit"
+          id="filterMonthBtn"
+          onClick={this.renderFiltered}
+        >
+          Filter
+        </button>
       </div>
     );
   }
