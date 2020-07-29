@@ -1,6 +1,8 @@
 #sortBtn {
   font-family: "Rowdies", cursive;
   margin: 10px;
+  background-color: #17bfae;
+  color: white;
 }
 
 #filterRow {
@@ -24,8 +26,15 @@
 
 #filterMonthBtn {
   margin-left: 10px;
+  background-color: #17bfae;
+  font-family: "Rowdies", cursive;
+  color: white;
 }
 
 input {
   margin-left: 10px;
+}
+
+th {
+  color: #17bfae;
 }
