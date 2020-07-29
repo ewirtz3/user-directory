@@ -41,6 +41,7 @@ export default class Directory extends Component {
 
   //function to compare birth month of employee with selected birth month
   filterBdayMonth = (month) => (employee) => {
+    console.log(`employee:>>`, employee);
     console.log(`month:>>`, month);
     const birthMonth = moment(employee.dob.date, "YYYY MM DD").format("MMMM");
     console.log(`birthMonth:>>`, birthMonth);
@@ -51,9 +52,9 @@ export default class Directory extends Component {
   renderFiltered = (event) => {
     event.persist();
     event.preventDefault();
-    console.log(`event:>>`, event.target.siblings);
+    console.log(`event:>>`, event.target.children[0].children[1].value);
     const matches = this.state.employees.filter(
-      this.filterBdayMonth(event.target.value)
+      this.filterBdayMonth(event.target.children[0].children[1].value)
     );
     this.setState({ employees: matches });
   };
