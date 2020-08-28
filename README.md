@@ -23,3 +23,5 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## License
 
 MIT License Copyright(c) 2020 Emily Wirtz
+
+If you have any questions, please contact me at GitHub username <a href="https://github.com/ewirtz3">ewirtz3</a>
