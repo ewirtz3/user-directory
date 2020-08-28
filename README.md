@@ -6,7 +6,7 @@ This is a React-based application that serves as an Employee Directory. Using cl
 
 Link to Heroku-deployed app: https://various-employees.herokuapp.com/
 
-![GitHub last commit](https://img.shields.io/github/last-commit/ewirtz3/user-directory?color=orange&style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/ewirtz3/user-directory?style=for-the-badge)
 
 ## Usage
 
