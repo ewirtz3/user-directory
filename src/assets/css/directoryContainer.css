@@ -6,16 +6,8 @@
   color: white;
 }
 
-#filterRow {
-  display: flex;
-  justify-content: center;
-}
-
-#sortRow {
-  display: flex;
-  justify-content: center;
-}
-
+#filterRow,
+#sortRow,
 #employeeRow {
   display: flex;
   justify-content: center;
