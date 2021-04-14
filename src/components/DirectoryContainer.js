@@ -46,6 +46,14 @@ export default class Directory extends Component {
     this.setState({ employees: matches, birthMonth: "" });
   };
 
+  //function to clear filter
+  clearFilter = (event) => {
+    event.preventDefault();
+    api.getUsers().then(({ data }) => {
+      this.setState({ employees: data.results });
+    });
+  };
+
   render() {
     return (
       <div className="container">
@@ -76,8 +84,16 @@ export default class Directory extends Component {
                     onChange={this.handleInputChange}
                     value={this.state.birthMonth}
                   />
-                  <button className="btn" type="submit" id="filterMonthBtn">
+                  <button className="btn" type="submit" id="clearFilterBtn">
                     Filter
+                  </button>
+                  <button
+                    className="btn"
+                    type="button"
+                    id="clearFilterBtn"
+                    onClick={this.clearFilter}
+                  >
+                    Clear Filter
                   </button>
                 </div>
               </form>

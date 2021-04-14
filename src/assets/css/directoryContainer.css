@@ -1,4 +1,5 @@
-#sortBtn {
+#sortBtn,
+#clearFilterBtn {
   font-family: "Rowdies", cursive;
   margin: 10px;
   background-color: #17bfae;
